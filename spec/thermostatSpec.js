@@ -1,7 +1,4 @@
 'use strict'
-// Thermostat starts at 20 degrees
-// You can increase the temperature with an up function
-// You can decrease the temperature with a down function
 // The minimum temperature is 10 degrees
 // If power saving mode is on, the maximum temperature is 25 degrees
 // If power saving mode is off, the maximum temperature is 32 degrees
@@ -21,10 +18,22 @@ describe('Thermostat', function(){
     expect(thermostat.getTemperature()).toEqual(20)
   });
 
-  it('can increase the temperature with up function', function(){
+  it('can increase the temperature by 1 degree', function(){
     thermostat.up();
     expect(thermostat.getTemperature()).toEqual(21);
   });
 
+  it('can decrease the temperature by 1 degree', function(){
+    thermostat.down();
+    expect(thermostat.getTemperature()).toEqual(19);
+  });
+
+  it('has a minimum temperature of 10 degreees', function(){
+    var i;
+    for( i = 0; i < 11; i++){
+      thermostat.down();
+    };
+    expect(thermostat.getTemperature()).toEqual(10);
+  });
 
 });
